@@ -10,7 +10,7 @@ app.use(express.json());
 app.use(morgan('dev'));
 
 //Connection
-mongoose.connect('mongodb://localhost:27017/Inventorydb',
+mongoose.connect('mongodb://localhost:27017/Votedb',
     {
         useNewUrlParser: true,
         useUnifiedTopology: true,

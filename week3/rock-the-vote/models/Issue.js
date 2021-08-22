@@ -9,7 +9,7 @@ const issueSchema = new Schema({
     },
     user: {
         type: Schema.Types.ObjectId,
-        ref: "Author",
+        ref: "User",
         required: true
     },
     dateCreated: {
