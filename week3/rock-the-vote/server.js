@@ -1,7 +1,9 @@
 const express = require('express');
 const app = express();
+require('dotenv').config();
 const morgan = require('morgan');
 const mongoose = require('mongoose');
+const expressJwt = require('express-jwt');
 
 const PORT = 2000
 
@@ -21,13 +23,17 @@ mongoose.connect('mongodb://localhost:27017/Votedb',
 )
 
 //Routes
-app.use('/users', require('./routes/userRouter'));
-app.use('/issues', require('./routes/issueRouter'));
-app.use('/comments', require('./routes/commentRouter'));
+app.use('/api', expressJwt({secret: process.env.SECRET, algorithms: ['RS256']}));
+app.use('/api/users', require('./routes/userRouter'));
+app.use('/api/issues', require('./routes/issueRouter'));
+app.use('/api/comments', require('./routes/commentRouter'));
 
 //Error Handling
 app.use((err, req, res) => {
-    return res.status(500).send({errMsg: err.message})
+    if(err.name === "Unauthorized Error"){
+        res.status(err.status)
+    }
+    return res.send({errMsg: err.message})
 })
 
 //Server Start
