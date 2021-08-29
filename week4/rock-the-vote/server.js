@@ -24,13 +24,13 @@ mongoose.connect('mongodb://localhost:27017/Votedb',
 
 //Routes
 app.use('/auth', require('./routes/authRouter'))
-app.use('/api', expressJwt({secret: process.env.SECRET, algorithms: ['RS256']}));
+app.use('/api', expressJwt({secret: process.env.SECRET, algorithms: ['HS256']}));
 app.use('/api/users', require('./routes/userRouter'));
-//app.use('/api/issues', require('./routes/issueRouter'));
-//app.use('/api/comments', require('./routes/commentRouter'));
+app.use('/api/issues', require('./routes/issueRouter'));
+app.use('/api/comments', require('./routes/commentRouter'));
 
 //Error Handling
-app.use((err, req, res) => {
+app.use((err, req, res, next) => {
     if(err.name === "Unauthorized Error"){
         res.status(err.status)
     }
