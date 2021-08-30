@@ -73,7 +73,7 @@ export default function UserProvider(props){
   }
 
  function addNewUser(newUser){
-   userAxios.post("/api/todo", newUser)
+   userAxios.post("/api/signup", newUser)
       .then(res => {
         setUserState(prevState => ({
           ...prevState,
@@ -84,14 +84,7 @@ export default function UserProvider(props){
   }
 
   return (
-    <UserContext.Provider
-      value={{
-        ...userState,
-        signup,
-        login,
-        logout,
-        addNewUser
-      }}>
+    <UserContext.Provider value = {{ ...userState, signup, login, logout, addNewUser }}>
       { props.children }
     </UserContext.Provider>
   )
