@@ -7,6 +7,17 @@ export default function AuthForm(props){
       username, password
     } 
   } = props
+
+// week6 addition --------------
+  // const { addNewPost } = props
+
+  // function handleSubmit(e){
+  //   e.preventDefault()
+  //   addNewPost(inputs)
+  //   setInputs(initInputs)
+  // }
+
+// week6 addition end --------------
   
   return (
     <form className='formCntnr' onSubmit = { handleSubmit }>
