@@ -33,6 +33,14 @@ export default function Auth(){
         resetAuthErr()
     }
 
+    function changeColor(e) {
+        e.target.style.color = 'darkorange';
+    }
+
+    function changeColor2(e) {
+        e.target.style.color = 'black';
+    }
+
     return (
         <div id="auth-cntnr">
             { !toggle ?
@@ -47,14 +55,14 @@ export default function Auth(){
                         <input type='email' id='email' className='signUp' name='email' placeholder= 'E-Mail' required></input><br></br>
                     </form>
                     <AuthForm handleChange = {handleChange} handleSubmit = {handleSignup} inputs = {inputs} btnText = 'Sign Up' errMsg = {errMsg} />
-                    <p className="memberLink" onClick = {() => toggleForm()}> Already a member? </p>  {/* Week 6 toggle change */}
+                    <p className="memberLink" onMouseOver={changeColor} onMouseLeave={changeColor2} onClick = {() => toggleForm()}> Already a member? </p>  {/* Week 6 toggle change */}
                 </div>
             </>
             :
             <>
                 <div className='formCntnr'>
                     <AuthForm handleChange = {handleChange} handleSubmit = {handleLogin} inputs = {inputs} btnText = 'Log In' errMsg = {errMsg} />
-                    <p className="memberLink" onClick = {() => toggleForm()}> Not a member? </p>  {/* Week 6 toggle change */}
+                    <p className="memberLink" onMouseOver={changeColor} onMouseLeave={changeColor2} onClick = {() => toggleForm()}> Not a member? </p>  {/* Week 6 toggle change */}
                 </div>
             </>
             }

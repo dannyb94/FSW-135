@@ -32,7 +32,9 @@ font-family: 'Roboto', sans-serif;      body text
     border: none;
 }
 
-.memberLink {}
+/* .memberLink :hover {
+    cursor: pointer;
+} */
 
 
 /* AuthForm */
@@ -72,15 +74,15 @@ font-family: 'Roboto', sans-serif;      body text
 
 
 /* Comments.js */
-.comment {}
+/* .comment {}
 
-.userCommented {}
+.userCommented {} */
 
 
 /* CommentsForm.js */
-.commsInput {}
+/* .commsInput {}
 
-.commsBtn {}
+.commsBtn {} */
 
 
 /* Contact.js */
