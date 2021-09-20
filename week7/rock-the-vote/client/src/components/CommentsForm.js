@@ -26,7 +26,7 @@ export default function CommentsForm(){
     return (
         <div>
             <form onSubmit={handleSubmit}>
-                <input type="text" name="comment" value={comment} placeholder="Start Your Comment" onChange={handleChange} />
+                <input className='commsInput' type="text" name="comment" value={comment} placeholder="Start Your Comment" onChange={handleChange} />
                 <button className="commsBtn">Submit</button>
                 {/* <button onClick={props.toggleComms} className="commsBtn">Cancel</button> */}
             </form>

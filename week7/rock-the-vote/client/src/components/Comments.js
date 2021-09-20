@@ -5,7 +5,7 @@ export default function Comments(props){
     console.log(props)
     return (
         <div key={_id} id={_id} className='comment'>
-            <p>@{username}: </p> {props.newComment}
+            <p className='userCommented'>@{username}: </p> {props.newComment}
         </div>
     )
 }

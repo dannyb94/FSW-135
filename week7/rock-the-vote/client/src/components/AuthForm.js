@@ -21,20 +21,23 @@ export default function AuthForm(props){
   
   return (
     <form className='formCntnr' onSubmit = { handleSubmit }>
-      <input className ='signUp'
+      <label>Username: </label>
+      <input id="bigUp1" className ='signUp'
         type = 'text' 
-        value = { username }  //username
+        value = { username }
         name = 'username' 
         onChange = { handleChange } 
         placeholder = 'Username'/><br></br>
-      <input className ='signUp'
+
+      <label>Password: </label>
+      <input id="bigUp2" className ='signUp'
         type = 'text' 
-        value = { password } //password
+        value = { password }
         name = 'password' 
         onChange = { handleChange } 
         placeholder = 'Password'/><br></br>
       <button id='auth-btn'> { btnText } </button>
-      <p style= {{backgroundColor: '#c00000', color: '#ffffff', textAlign: 'center'}}> { errMsg } </p>           {/* Week6 */}
+      <p style= {{backgroundColor: '#c00000', color: '#ffffff', textAlign: 'center'}}> { errMsg } </p>
     </form>
   )
 }
