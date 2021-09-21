@@ -56,14 +56,14 @@ issueRouter
     // })
 
     //Find by like range
-    .get('/search/bylikes/:low/:high', (req, res, next) => {
-        Issue.where('likes').gte(req.params.low).lte(req.params.high).exec((err, issue) => {
-            if(err){
-                res.status(500)
-                return next(err)
-            }
-            return res.status(200).send(issue)
-        })
-    })
+    // .get('/search/bylikes/:low/:high', (req, res, next) => {
+    //     Issue.where('likes').gte(req.params.low).lte(req.params.high).exec((err, issue) => {
+    //         if(err){
+    //             res.status(500)
+    //             return next(err)
+    //         }
+    //         return res.status(200).send(issue)
+    //     })
+    // })
   
   module.exports = issueRouter

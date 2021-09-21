@@ -52,7 +52,7 @@ export default function UserProvider(props){
   }
 
   function login(credentials){
-    var credentials = { username: 'test5', password: 'test4'}
+    //var credentials = { username: 'test5', password: 'test4'}
     axios.post("http://localhost:2000/auth/login", credentials)
       .then(res => {
         const { user, token } = res.data
@@ -103,10 +103,11 @@ export default function UserProvider(props){
       .catch(err => console.log(err.response.data.errMsg))
   }
 
-  const getIssueComments = async() => {
+  const getIssueComments = async(issueId) => {
     let response;
     try{
-      response = await userAxios.get("http://localhost:2000/api/comments")
+      console.log('IssueID', issueId)
+      response = await userAxios.get(`http://localhost:2000/api/comments/${issueId}`)
       console.log(response)
       setUserState(prevState => ({
         ...prevState,
@@ -131,38 +132,46 @@ export default function UserProvider(props){
     }
     catch(err){
       console.log(err.response.data.errMsg)
-    }
-      //  .then(res => {
+    }}
 
-      //    setUserState(prevState => ({
-      //      ...prevState,
-      //      issues: [ res.data] //...prevState.issues,
-      //    }))
-      //    return userState.issues
-      //  })
-      //  .catch(err => console.log(err.response.data.errMsg))
+    const getUserIssues = async() => {
+      let response;
+      try{
+        response = await userAxios.get(`http://localhost:2000/api/issues/${userState.user._id}`)
+        setUserState(prevState => ({
+          ...prevState,
+          userIssues: [ response.data] //...prevState.issues,
+        }))
+        return response
+      }
+      catch(err){
+        console.log(err.response.data.errMsg)
+      }
+      
     }
     //getIssues()
 
 
-    // const postComment = async(_id) => {
-    //   let response;
-    //   try{
-    //     response = await userAxios.get(`http://localhost:2000/api/comments/${_id}`)
-    //     setUserState(prevState => ({
-    //       ...prevState,
-    //       issueComments: [ response.data] //...prevState.comment,
-    //     }))
-    //     return response
-    //   }
-    //   catch(err){
-    //     console.log(err.response.data.errMsg)
-    //   }
-    // }
+    const postComment = async(_id, newComment) => {
+      let response;
+      try{
+        console.log('POST ID', _id)
+        response = await userAxios.post(`http://localhost:2000/api/comments/${_id}`, newComment)
+        // setUserState(prevState => ({
+        //   ...prevState,
+        //   issueComments: [ response.data] //...prevState.comment,
+        // }))
+        getIssueComments(_id)
+        return response
+      }
+      catch(err){
+        console.log(err.response.data.errMsg)
+      }
+     }
   
 
   return (
-    <UserContext.Provider value = {{ ...userState, signup, login, logout, addNewPost, getIssues, getIssueComments, resetAuthErr }}>
+    <UserContext.Provider value = {{ ...userState, signup, login, logout, addNewPost, postComment, getIssues, getUserIssues, getIssueComments, resetAuthErr }}>
       { props.children }
     </UserContext.Provider>
   )

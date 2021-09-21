@@ -6,9 +6,6 @@ export default function IssuesForm(props){
     const { addNewPost } = props
 
     const [inputs, setInputs] = useState(initInputs)
-    //const [toggle, setToggle] = useState(false)
-
-    //const { signup, login, errMsg, resetAuthErr } = useContext(UserContext)  //Week6 additions
 
     function handleChange(e){
     const {name, value} = e.target 
@@ -25,14 +22,17 @@ export default function IssuesForm(props){
     }
 
     return (
-        <div>
-            <input className =''
-        type = 'text' 
-        value = { inputs.newIssue } 
-        name = 'newIssue' 
-        onChange = { handleChange } 
-        placeholder = 'text'/>
-        <button onClick={handleSubmit}>Post</button>
+        <div id="postDiv">
+            <input
+                id ='postInput'
+                type = 'text' 
+                value = { inputs.newIssue } 
+                name = 'newIssue' 
+                size="80"
+                onChange = { handleChange } 
+                placeholder = 'Add your social issue here.'
+            />
+            <button id="postBtn" onClick={handleSubmit}>Post</button>
         </div>
     )
 }

@@ -1,16 +1,16 @@
 import React, { useContext } from 'react';
-import IssuesForm from './IssuesForm';
-import Issues from './Issues';
+import IssuesForm from './Issues/IssuesForm';
+import IssueList from './Issues/IssueList';
 import { UserContext } from '../context/UserProvider';
 
 export default function Profile(){
-    const {user: {username}, addNewPost, issues, getIssues} = useContext(UserContext)
-    console.log('profile', issues)
+    const {user: {username}, addNewPost, userIssues, getUserIssues} = useContext(UserContext)
+    console.log('profile', userIssues)
     return (
         <div>
             <h1>Welcome @{username}</h1>
             <IssuesForm addNewPost= {addNewPost} /> {/* */}
-            <Issues getIssues = {getIssues} issues = {issues} /> {/* */}
+            <IssueList getIssues = {getUserIssues} issues = {userIssues} /> {/* */}
         </div>
     )
 }

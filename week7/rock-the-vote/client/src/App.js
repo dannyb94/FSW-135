@@ -1,13 +1,15 @@
 import './App.css';
 import React, { useContext } from 'react';
-import { UserContext } from './context/UserProvider'
 import { Route, Switch, Redirect } from 'react-router-dom';
-import Auth from './components/Auth';
+import ProtectedRoute from './components/ProtectedRoute';
+
+import Auth from './components/Auth/Auth';
 import Contact from './components/Contact';
-import Issues from './components/Issues';
+import Issues from './components/IssuesPage';
 import Nav from './components/Nav';
 import Profile from './components/Profile';
-import ProtectedRoute from './components/ProtectedRoute';
+
+import { UserContext } from './context/UserProvider'
 
 function App() {
   const {token} = useContext(UserContext)

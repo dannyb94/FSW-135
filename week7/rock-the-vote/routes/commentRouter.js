@@ -16,8 +16,8 @@ commentRouter
     })
 
     //Get by User
-    .get('/:userId', (req, res, next) => {
-        Comment.find({user: req.params.userId}, (err, comms) => {
+    .get('/:issueId', (req, res, next) => {
+        Comment.find({issue: req.params.issueId}, (err, comms) => {
             if(err){
                 res.status(500)
                 return next(err)
@@ -30,6 +30,7 @@ commentRouter
     .post('/:issue', (req, res, next) => {
         req.body.issue = req.params.issue
         req.body.user = req.user._id
+        req.body.username = req.user.username
         const newComment = new Comment(req.body)
         newComment.save((err, savedComment) => {
             if(err){
